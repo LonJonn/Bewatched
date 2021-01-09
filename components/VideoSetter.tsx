@@ -7,12 +7,17 @@ const VideoSetter: React.FC = () => {
   async function setVideoUrl() {
     const res = await fetch("api/video", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url }),
     });
 
-    if (!res.ok) {
+    if (res.ok) {
+      alert("Video set successfully! 😍");
+    } else {
       alert("Unable to set video url 😣");
     }
+
+    setUrl("");
   }
 
   return (

@@ -4,9 +4,7 @@ let video: string = null;
 
 const handler: NextApiHandler = (req, res) => {
   if (req.method === "GET") {
-    res.json({
-      url: video,
-    });
+    res.json({ url: video });
   }
 
   if (req.method === "POST") {
