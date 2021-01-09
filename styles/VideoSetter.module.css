@@ -1,0 +1,11 @@
+.setter {
+  display: flex;
+}
+
+.urlInput {
+  padding: 0.5rem;
+}
+
+.setButton {
+  padding: 0.25rem 1rem;
+}
