@@ -15,6 +15,11 @@ const VideoPlayer: React.FC = () => {
       return;
     }
 
+    if (url.includes(".mp4")) {
+      videoRef.current.src = url;
+      return;
+    }
+
     const hls = new Hls();
     hls.loadSource(url);
     hls.attachMedia(videoRef.current);
