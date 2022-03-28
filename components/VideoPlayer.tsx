@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import Hls from "hls.js";
 import styles from "../styles/VideoPlayer.module.css";
 
 const VideoPlayer: React.FC = () => {
@@ -17,20 +16,19 @@ const VideoPlayer: React.FC = () => {
 
     if (url.includes(".mp4")) {
       videoRef.current.src = url;
-      return;
+    } else {
+      const Hls = (await import("hls.js")).default;
+      const hls = new Hls();
+      hls.loadSource(url);
+      hls.attachMedia(videoRef.current);
     }
 
-    const hls = new Hls();
-    hls.loadSource(url);
-    hls.attachMedia(videoRef.current);
-
-    videoRef.current.play();
     setPlaying(true);
   }
 
   return (
     <div className={styles.player}>
-      <video ref={videoRef} controls></video>
+      <video ref={videoRef} controls autoPlay />
       {!playing && (
         <button onClick={loadVideo} className={styles.playButton}>
           Play 🎥
